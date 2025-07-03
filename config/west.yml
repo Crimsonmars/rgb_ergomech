@@ -5,11 +5,17 @@ manifest:
       #add repo for screen customization
     - name: Crimsonmars
       url-base: https://github.com/Crimsonmars
+    - name: m165437 #niceview gem
+      url-base: https://github.com/M165437 #niceview gem
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+      #niceview gem
+    - name: nice-view-gem #new entry
+      remote: m165437 #new entry
+      revision: main #new entry
       # support nice_oled and nice_epaper
     - name: zmk-nice-oled
       remote: Crimsonmars
