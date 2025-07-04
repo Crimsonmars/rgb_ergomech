@@ -56,12 +56,11 @@
  &spi0 {
      compatible = "nordic,nrf-spim";
      status = "okay";
-     cs-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;  // <== You're using P0.02 for CS
+     cs-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;  // Your CS pin at P0.02
 
      oled: ssd1306@0 {
          compatible = "solomon,ssd1306fb-spi";
-         reg = <0>;  // SPI chip select index
-         label = "SSD1306";
+         reg = <0>;  // SPI CS index
          spi-max-frequency = <10000000>;
 
          width = <128>;
@@ -76,5 +75,8 @@
          com-sequential;
          inversion-on;
          prechargep = <0x22>;
+
+         reset-gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;  // if you have RESET wired, else omit
+         // no dc-gpios here because your display doesn't have it
      };
  };
