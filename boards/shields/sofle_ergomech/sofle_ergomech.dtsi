@@ -53,24 +53,29 @@
          triggers-per-rotation = <20>;
      };
  };
- 
- &pro_micro_i2c {
+ &spi0 {
+     compatible = "nordic,nrf-spim";
      status = "okay";
- 
-     oled: ssd1306@3c {
-         compatible = "solomon,ssd1306fb";
-         reg = <0x3c>;
+     cs-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;  // <== You're using P0.02 for CS
+
+     oled: ssd1306@0 {
+         compatible = "solomon,ssd1306fb-spi";
+         reg = <0>;  // SPI chip select index
+         label = "SSD1306";
+         spi-max-frequency = <10000000>;
+
          width = <128>;
          height = <32>;
          segment-offset = <0>;
          page-offset = <0>;
          display-offset = <0>;
          multiplex-ratio = <31>;
+
          segment-remap;
          com-invdir;
          com-sequential;
          inversion-on;
          prechargep = <0x22>;
-         cs-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+         reset-gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;  // optional: define if you're using a RESET line
      };
  };
