@@ -92,6 +92,3 @@
          prechargep = <0x22>;
      };
  };
- &nice_view_spi {
-     cs-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
- };
