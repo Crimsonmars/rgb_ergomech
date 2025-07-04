@@ -92,7 +92,6 @@
          prechargep = <0x22>;
      };
  };
-/* Override just the CS pin in the existing Nice!View SPI node */
-nice_view_spi: &spi0 {
-    cs-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;  /* ==== YOUR CS ON P0.02 === */
-};
+ &nice_view_spi {
+     cs-gpios = <&pro_micro 2 GPIO_ACTIVE_HIGH>;
+ };
